@@ -27,5 +27,5 @@
     "scripts": {
         "main:compile": "rollup --config rollup.config.js"
     },
-    "main": "./dest/vesic.js"
+    "main": "./dist/vesic.js"
 }
