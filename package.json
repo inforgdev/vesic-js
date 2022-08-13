@@ -17,5 +17,14 @@
     "repo": "github:inforgdev/vesic-js",
     "bugs": {
         "url": "https://github.com/inforgdev/vesic-js/issues"
-    }
+    },
+    "devDependencies": {
+        "rollup": "^2.77.3",
+        "rollup-plugin-node-resolve": "^5.2.0",
+        "rollup-plugin-terser": "^7.0.2"
+    },
+    "scripts": {
+        "main:compile": "rollup --config rollup.config.js"
+    },
+    "main": "./dest/vesic.js"
 }
