@@ -1,0 +1,1 @@
+export function dummySrc() { return () => undefined; }

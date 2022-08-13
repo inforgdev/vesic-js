@@ -1,0 +1,1 @@
+import"fs";import"path";function t(){return()=>{}}function n(){return t=>t}function r(){}function c(c){let o=(c=function(c={}){function o(o=t,e=n,i=r,u={}){c.src=o,c.proc=e,c.sink=i,c.meta=u}return o(c.src,c.proc,c.sink,c.meta),c}(c)).src(),e=c.proc(o,c.meta)(o,c.meta);return c.sink(e,c.meta)}export{n as dummyProc,r as dummySink,t as dummySrc,c as vesic};
