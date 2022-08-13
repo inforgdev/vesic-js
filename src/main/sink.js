@@ -42,3 +42,5 @@ function optionsMkfile(meta = {}) {
     handle(meta.path);
     return meta;
 }
+
+export function ret(data) { return data; }
