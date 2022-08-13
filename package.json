@@ -7,7 +7,7 @@
         "js",
         "task",
         "runner",
-        "file",
+        "fs",
         "print"
     ],
     "author": "Inforg <contact@inforg.dev> (https://inforg.dev)",
