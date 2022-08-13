@@ -1,6 +1,6 @@
 import { vesic } from "./vesic.js";
-import { dummySrc } from "./src.js";
-import { dummySink } from "./sink.js";
+import { dummySrc, file } from "./src.js";
+import { dummySink, mkfile } from "./sink.js";
 import { dummyProc } from "./proc.js";
 
 export {
