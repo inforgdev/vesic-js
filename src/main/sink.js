@@ -48,3 +48,15 @@ export function ret(data) { return data; }
 export function print(data) {
     console.log(data);
 }
+
+export function parallel(...func) {
+    return (data, meta) => {
+        let ret = [];
+    
+        func.forEach(curSink => {
+            ret.push(curSink(data, meta));
+        });
+    
+        return ret;
+    };
+}
