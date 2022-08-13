@@ -1,4 +1,21 @@
 {
     "name": "vesic-js",
-    "version": "0.0.0"
+    "version": "0.0.0",
+    "description": "Simple task runner written in JS.",
+    "keywords": [
+        "js",
+        "task",
+        "runner",
+        "file",
+        "print"
+    ],
+    "author": "Inforg <contact@inforg.dev> (https://inforg.dev)",
+    "contributors": [
+        "Luis Float <contact@luisfloat.com> (https://luisfloat.com)"
+    ],
+    "homepage": "https://github.com/inforgdev/vesic-js",
+    "repo": "github:inforgdev/vesic-js",
+    "bugs": {
+        "url": "https://github.com/inforgdev/vesic-js/issues"
+    }
 }
