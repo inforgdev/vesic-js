@@ -44,3 +44,7 @@ function optionsMkfile(meta = {}) {
 }
 
 export function ret(data) { return data; }
+
+export function print(data) {
+    console.log(data);
+}
