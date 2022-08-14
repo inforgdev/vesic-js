@@ -9,7 +9,7 @@ export function mkfile(data, meta) {
     let fileDist = meta.path;
     
     if(typeof meta.path === 'object') {
-        meta = optionSinkFile(meta);
+        meta = optionMetaPathObj(meta);
         fileDist = join(meta.path.dirname, meta.path.name + meta.path.extname);
     }
 
@@ -19,7 +19,7 @@ export function mkfile(data, meta) {
     writeFileSync(fileDist, data, meta.options);
 }
 
-function optionSinkFile(meta) {
+function optionMetaPathObj(meta) {
     function handle(
         dirname = "./dest/",
         name = "index",
