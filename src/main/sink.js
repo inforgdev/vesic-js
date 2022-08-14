@@ -6,32 +6,35 @@ export function dummySink() {}
 export function mkfile(data, meta) {
     meta = optionsMkfile(meta);
 
-    let fileDist = meta.path;
-    
-    if(typeof meta.path === 'object') {
-        meta = optionMetaPathObj(meta);
-        fileDist = join(meta.path.dirname, meta.path.name + meta.path.extname);
-    }
-
-    const targetDir = dirname(fileDist);
+    let path = optionsPath(meta.path);
+    const targetDir = dirname(path);
 
     mkdirSync(targetDir, { recursive: true, });
-    writeFileSync(fileDist, data, meta.options);
+    writeFileSync(path, data, meta.options);
 }
 
-function optionMetaPathObj(meta) {
+function optionsPath(path) {
+    if(typeof path === 'object') {
+        path = optionsMetaPathObj(meta.path);
+        return join(path.dirname, path.name + path.extname);
+    }
+
+    return path;
+}
+
+function optionsMetaPathObj(path) {
     function handle(
         dirname = "./dest/",
         name = "index",
         extname = "txt",
     ) {
-        meta.path.dirname = dirname;
-        meta.path.name = name;
-        meta.path.extname = extname;
+        path.dirname = dirname;
+        path.name = name;
+        path.extname = extname;
     };
 
-    handle(meta.path.dirname, meta.path.name, meta.path.extname);
-    return meta;
+    handle(path.dirname, path.name, path.extname);
+    return path;
 }
 
 function optionsMkfile(meta = {}) {
