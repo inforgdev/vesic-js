@@ -1,15 +1,16 @@
-import { vesic } from "./vesic.js";
-import { dummySrc, file, val } from "./src.js";
-import { dummySink, mkfile, ret, print, parallel } from "./sink.js";
-import { dummyProc, series } from "./proc.js";
+import { vesic, meta } from "./core/index.js";
+import { dummySrc, dummyProc, dummySink } from "./dummy/index.js";
+import { file, mkfile } from "./fs/index.js";
+import { val, ret } from "./js/index.js";
+import { series, parallel } from "./combine/index.js";
+import { print } from "./std/index.js";
 
 export {
     vesic,
-    dummySrc,
-    dummySink,
-    dummyProc,
+    meta,
+    dummySrc, dummyProc, dummySink,
     file, mkfile,
     val, ret,
+    parallel, series,
     print,
-    series, parallel,
 };

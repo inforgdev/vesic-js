@@ -1,6 +1,4 @@
-import { dummySrc } from "./src.js";
-import { dummyProc } from "./proc.js";
-import { dummySink } from "./sink.js";
+import { optionsVesic } from "./options.js";
 
 export function vesic(options) {
     if(Array.isArray(options)) return vesics(options);
@@ -22,16 +20,4 @@ function vesics(vesics) {
     });
 
     return ret;
-}
-
-function optionsVesic(options = {}) {
-    function handle(src = dummySrc, proc = dummyProc, sink = dummySink, meta = {}) {
-        options.src = src;
-        options.proc = proc;
-        options.sink = sink;
-        options.meta = meta;
-    }
-
-    handle(options.src, options.proc, options.sink, options.meta);
-    return options;
 }
