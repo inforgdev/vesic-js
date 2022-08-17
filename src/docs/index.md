@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: VesicJS
-  text: Simple task runner written in JS.
+  tagline: Simple task runner written in JS.
   actions:
     - theme: alt
       text: View on GitHub
