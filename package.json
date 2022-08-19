@@ -31,5 +31,6 @@
         "docs:dev": "vitepress dev ./",
         "docs:build": "vitepress build ./"
     },
-    "main": "./dist/vesic.js"
+    "main": "./dist/vesic.js",
+    "type": "module"
 }
