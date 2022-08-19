@@ -13,6 +13,7 @@
     "contributors": [
         "Luis Float <contact@luisfloat.com> (https://luisfloat.com)"
     ],
+    "license": "SEE LICENSE IN LICENSE.md",
     "homepage": "https://github.com/inforgdev/vesic-js",
     "repo": "github:inforgdev/vesic-js",
     "bugs": {
