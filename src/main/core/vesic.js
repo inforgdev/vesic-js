@@ -6,8 +6,7 @@ export function vesic(options) {
     options = optionsVesic(options);
 
     let srcData = options.src();
-    let procFunc = options.proc(srcData, options.meta);
-    let procData = procFunc(srcData, options.meta);
+    let procData = options.proc(srcData, options.meta);
 
     return options.sink(procData, options.meta);
 }

@@ -1,5 +1,5 @@
 export function series(...tasks) {
-    return (data, meta) => () => {
+    return (data, meta) => {
         let lastData = data;
 
         tasks.forEach(task => {

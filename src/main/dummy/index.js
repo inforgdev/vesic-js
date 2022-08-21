@@ -1,7 +1,7 @@
 export function dummySrc() { return () => undefined; }
 
-export function dummyProc() {
-    return (data) => data;
+export function dummyProc(data) {
+    return data;
 }
 
 export function dummySink() {}
