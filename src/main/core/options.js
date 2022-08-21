@@ -1,7 +1,7 @@
-import { dummyProc, dummySink, dummySrc } from "../dummy/index.js";
+import { bypass, dummySink, dummySrc } from "../dummy/index.js";
 
 export function optionsVesic(options = {}) {
-    function handle(src = dummySrc, proc = dummyProc, sink = dummySink, meta = {}) {
+    function handle(src = dummySrc, proc = bypass, sink = dummySink, meta = {}) {
         options.src = src;
         options.proc = proc;
         options.sink = sink;

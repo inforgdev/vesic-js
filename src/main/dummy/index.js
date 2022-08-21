@@ -1,6 +1,6 @@
 export function dummySrc() { return () => undefined; }
 
-export function dummyProc(data) {
+export function bypass(data) {
     return data;
 }
 
