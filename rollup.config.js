@@ -11,7 +11,7 @@ export default {
     },
     external: [
         "fs",
-        "path"
+        "path",
     ],
     plugins: [
         nodeResolve(),
