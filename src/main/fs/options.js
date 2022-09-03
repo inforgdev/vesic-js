@@ -13,7 +13,7 @@ export function optionsMetaPathObj(path) {
     function handle(
         dirname = "./dest/",
         name = "index",
-        extname = "txt",
+        extname = ".txt",
     ) {
         path.dirname = dirname;
         path.name = name;
