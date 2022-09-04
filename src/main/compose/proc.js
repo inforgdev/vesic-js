@@ -8,5 +8,5 @@ export function series(...tasks) {
         });
 
         return lastData;
-    }
+    };
 }

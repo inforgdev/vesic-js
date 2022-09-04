@@ -7,7 +7,7 @@ export function optionsPath(path) {
     }
 
     return path;
-}
+};
 
 export function optionsMetaPathObj(path) {
     function handle(
@@ -22,7 +22,7 @@ export function optionsMetaPathObj(path) {
 
     handle(path.dirname, path.name, path.extname);
     return path;
-}
+};
 
 export function optionsMkfile(meta = {}) {
     function handle(path = "./dest/index.txt") {
@@ -31,4 +31,4 @@ export function optionsMkfile(meta = {}) {
 
     handle(meta.path);
     return meta;
-}
+};

@@ -8,4 +8,4 @@ export function parallel(...func) {
     
         return ret;
     };
-}
+};

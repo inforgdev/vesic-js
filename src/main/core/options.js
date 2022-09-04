@@ -10,4 +10,4 @@ export function optionsVesic(options = {}) {
 
     handle(options.src, options.proc, options.sink, options.meta);
     return options;
-}
+};

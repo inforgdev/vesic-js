@@ -9,7 +9,7 @@ export function vesic(options) {
     let procData = options.proc(srcData, options.meta);
 
     return options.sink(procData, options.meta);
-}
+};
 
 function vesics(vesics) {
     let ret = [];

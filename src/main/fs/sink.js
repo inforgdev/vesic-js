@@ -10,4 +10,4 @@ export function mkfile(data, meta) {
 
     mkdirSync(targetDir, { recursive: true, });
     writeFileSync(path, data, meta.options);
-}
+};
