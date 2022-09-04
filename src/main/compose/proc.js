@@ -1,12 +1,6 @@
 export function series(...tasks) {
-    return (data, meta) => {
-        let lastData = data;
-
-        tasks.forEach(task => {
-            let procFunc = task(lastData, meta);
-            lastData = procFunc(lastData, meta);
-        });
-
-        return lastData;
-    };
-}
+    return (data, meta) => tasks.reduce(
+        (prev, curr) => curr(prev, meta),
+        data,
+    );
+};
