@@ -12,11 +12,5 @@ export function vesic(options) {
 };
 
 function vesics(vesics) {
-    let ret = [];
-
-    vesics.forEach(curOptions => {
-        ret.push(vesic(curOptions));
-    });
-
-    return ret;
+    return vesics.map((curr) => vesic(curr));
 }
