@@ -8,8 +8,7 @@ test("core: should run vesic config", () => {
         proc: bypass,
         sink: ret,
     };
-    const auto = vesic(vesicConfig);
-
+    
     expect(vesic(vesicConfig))
         .toBe(data);
 });
