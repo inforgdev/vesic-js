@@ -29,7 +29,9 @@
     "scripts": {
         "main:compile": "rollup --config rollup.config.js",
         "docs:dev": "vitepress dev ./",
-        "docs:build": "vitepress build ./"
+        "docs:build": "vitepress build ./",
+        "test": "vitest",
+        "coverage": "vitest run --coverage"
     },
     "main": "./dist/vesic.js",
     "type": "module"
