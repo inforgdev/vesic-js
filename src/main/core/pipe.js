@@ -1,4 +1,4 @@
-import { parallel, series, ret } from "../index.js";
+import { parallel, series } from "../compose/index.js";
 
 function pipe() {
     return {
