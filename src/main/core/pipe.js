@@ -19,6 +19,12 @@ function pipe() {
                     pipedSinkVal = sinkFunc(pipedValue, pipedMeta || {});
                     return this;
                 },
+                series(...procFuncs) {
+                    return this.proc(series(...procFuncs));
+                },
+                parallel(...sinkFuncs) {
+                    return this.sink(parallel(...sinkFuncs));
+                },
             };
         },
     };
