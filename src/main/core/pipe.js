@@ -25,6 +25,10 @@ function pipe() {
                 parallel(...sinkFuncs) {
                     return this.sink(parallel(...sinkFuncs));
                 },
+                exec(func, meta) {
+                    this.meta(meta)
+                    return this.proc(func)
+                },
             };
         },
     };
