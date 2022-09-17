@@ -1,6 +1,6 @@
 import { parallel, series } from "../compose/index.js";
 
-function pipe() {
+function stream() {
     return {
         src: (srcFunc, pipedValue, pipedMeta, pipedSinkVal) => {
             pipedValue = srcFunc();
@@ -34,4 +34,4 @@ function pipe() {
     };
 };
 
-export { pipe };
+export { stream };

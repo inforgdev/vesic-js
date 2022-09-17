@@ -1,9 +1,9 @@
 import { vesic } from "./vesic.js";
 import { meta } from "./utils.js";
-import { pipe } from "./pipe.js";
+import { stream } from "./stream.js";
 
 export {
     vesic,
     meta,
-    pipe,
+    stream,
 };
