@@ -9,5 +9,5 @@ export function mkfile(data, meta) {
     const targetDir = dirname(path);
 
     mkdirSync(targetDir, { recursive: true, });
-    writeFileSync(path, data, meta.options);
+    writeFileSync(path, data.toString(), meta.options);
 };
