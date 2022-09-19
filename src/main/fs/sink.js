@@ -1,13 +1,11 @@
 import { writeFileSync, mkdirSync } from "fs";
 import { dirname } from "path";
-import { optionsMkfile, optionsPath } from "./options.js";
+import { optionsPath } from "./options.js";
 
 export function mkfile(data, meta) {
-    meta = optionsMkfile(meta);
-
-    let path = optionsPath(meta.path);
-    const targetDir = dirname(path);
+    let entry = optionsPath(meta.path);
+    const targetDir = dirname(entry);
 
     mkdirSync(targetDir, { recursive: true, });
-    writeFileSync(path, data.toString(), meta.options);
+    writeFileSync(entry, data.toString(), meta.options);
 };
