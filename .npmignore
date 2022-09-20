@@ -1,3 +1,4 @@
 src/
 .vitepress
 rollup.config.js
+vitest.config.js
