@@ -1,3 +1,5 @@
+import { meta } from "./utils.js";
+
 function stream(pipedValue, pipedMeta, pipedSinkVal) {
     let useProc, useSink;
 
