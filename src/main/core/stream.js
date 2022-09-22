@@ -1,5 +1,3 @@
-import { parallel, series } from "../compose/index.js";
-
 function stream(pipedValue, pipedMeta, pipedSinkVal) {
     let useProc, useSink;
 
@@ -31,11 +29,13 @@ function stream(pipedValue, pipedMeta, pipedSinkVal) {
             pipedSinkVal = value(pipedValue, pipedMeta || {});
             return this;
         },
-        series(...procFuncs) {
-            return this.proc(series(...procFuncs));
+        series(...procValues) {
+            procValues.forEach(func => this.proc(func));
+            return this;
         },
-        parallel(...sinkFuncs) {
-            return this.sink(parallel(...sinkFuncs));
+        parallel(...sinkValues) {
+            sinkValues.forEach(func => this.sink(func));
+            return this;
         },
         exec(func, meta) {
             this.meta(meta)
