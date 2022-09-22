@@ -1,6 +1,8 @@
 import { parallel, series } from "../compose/index.js";
 
 function stream(pipedValue, pipedMeta, pipedSinkVal) {
+    let useProc, useSink;
+
     return {
         src(srcFunc) {
             pipedValue = srcFunc();
@@ -11,12 +13,22 @@ function stream(pipedValue, pipedMeta, pipedSinkVal) {
             pipedMeta = metaObj;
             return this;
         },
-        proc(procFunc) {
-            pipedValue = procFunc(pipedValue, pipedMeta || {});
+        useProc(func) {
+            useProc = func;
             return this;
         },
-        sink(sinkFunc) {
-            pipedSinkVal = sinkFunc(pipedValue, pipedMeta || {});
+        proc(value) {
+            if(typeof value === "object") value = meta(useProc, value);
+            pipedValue = value(pipedValue, pipedMeta || {});
+            return this;
+        },
+        useSink(func) {
+            useSink = func;
+            return this;
+        },
+        sink(value) {
+            if(typeof value === "object") value = meta(useSink, value);
+            pipedSinkVal = value(pipedValue, pipedMeta || {});
             return this;
         },
         series(...procFuncs) {
