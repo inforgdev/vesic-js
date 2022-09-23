@@ -20,6 +20,7 @@
         "url": "https://github.com/inforgdev/vesic-js/issues"
     },
     "devDependencies": {
+        "@rollup/plugin-babel": "^5.3.1",
         "rollup": "^2.77.3",
         "rollup-plugin-node-resolve": "^5.2.0",
         "rollup-plugin-terser": "^7.0.2",
@@ -33,6 +34,13 @@
         "test": "vitest",
         "coverage": "vitest run --coverage"
     },
-    "main": "./dist/vesic.js",
+    "main": "./dist/vesic.cjs",
+    "module": "./dist/vesic.esm.js",
+    "exports": {
+        ".": {
+            "require": "./dist/vesic.cjs",
+            "import": "./dist/vesic.esm.js"
+        }
+    },
     "type": "module"
 }
