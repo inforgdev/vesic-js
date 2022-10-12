@@ -35,11 +35,11 @@
         "coverage": "vitest run --coverage"
     },
     "main": "./dist/vesic.cjs",
-    "module": "./dist/vesic.esm.js",
+    "module": "./dist/vesic.js",
     "exports": {
         ".": {
             "require": "./dist/vesic.cjs",
-            "import": "./dist/vesic.esm.js"
+            "import": "./dist/vesic.js"
         }
     },
     "type": "module"
