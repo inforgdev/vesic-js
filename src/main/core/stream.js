@@ -17,7 +17,9 @@ function stream(pipedValue, pipedMeta, pipedSinkVal) {
             useProc = func;
             return this;
         },
-        proc(value) {
+        proc(value, inlineMeta) {
+            if(inlineMeta) this.meta(inlineMeta);
+
             if(typeof value === "object") value = meta(useProc, value);
             pipedValue = value(pipedValue, pipedMeta || {});
             return this;
@@ -26,7 +28,9 @@ function stream(pipedValue, pipedMeta, pipedSinkVal) {
             useSink = func;
             return this;
         },
-        sink(value) {
+        sink(value, inlineMeta) {
+            if(inlineMeta) this.meta(inlineMeta);
+
             if(typeof value === "object") value = meta(useSink, value);
             pipedSinkVal = value(pipedValue, pipedMeta || {});
             return this;
@@ -38,10 +42,6 @@ function stream(pipedValue, pipedMeta, pipedSinkVal) {
         parallel(...sinkValues) {
             sinkValues.forEach(func => this.sink(func));
             return this;
-        },
-        exec(func, meta) {
-            this.meta(meta)
-            return this.proc(func)
         },
     };
 };
