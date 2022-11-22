@@ -1,5 +1,5 @@
-import a, { mkdirSync as m, writeFileSync as p } from "fs";
-import { format as l, dirname as h } from "path";
+import f, { mkdirSync as p, writeFileSync as m } from "fs";
+import { format as h, dirname as l } from "path";
 function y() {
   return () => {
   };
@@ -15,80 +15,76 @@ function S(r) {
       return e.map((s) => S(s));
     }(r);
   r = function(e = {}) {
-    return function(s = y, n = d, u = k, f = {}) {
-      e.src = s, e.proc = n, e.sink = u, e.meta = f;
+    return function(s = y, t = d, o = k, c = {}) {
+      e.src = s, e.proc = t, e.sink = o, e.meta = c;
     }(e.src, e.proc, e.sink, e.meta), e;
   }(r);
-  let t = r.src(), i = r.proc(t, r.meta);
+  let n = r.src, i = r.proc(n, r.meta);
   return r.sink(i, r.meta);
 }
-function c(r, t) {
-  return (i) => r(i, t);
+function u(r, n) {
+  return (i) => r(i, n);
 }
-function j(r, t, i) {
+function j(r, n, i) {
   let e, s;
-  return { src(n) {
-    return r = n(), this;
-  }, done: () => i, meta(n) {
-    return t = n, this;
-  }, useProc(n) {
-    return e = n, this;
-  }, proc(n) {
-    return typeof n == "object" && (n = c(e, n)), r = n(r, t || {}), this;
-  }, useSink(n) {
-    return s = n, this;
-  }, sink(n) {
-    return typeof n == "object" && (n = c(s, n)), i = n(r, t || {}), this;
-  }, series(...n) {
-    return n.forEach((u) => this.proc(u)), this;
-  }, parallel(...n) {
-    return n.forEach((u) => this.sink(u)), this;
-  }, exec(n, u) {
-    return this.meta(u), this.proc(n);
+  return { src(t) {
+    return r = t, this;
+  }, done: () => i, meta(t) {
+    return n = t, this;
+  }, useProc(t) {
+    return e = t, this;
+  }, proc(t) {
+    return typeof t == "object" && (t = u(e, t)), r = t(r, n || {}), this;
+  }, useSink(t) {
+    return s = t, this;
+  }, sink(t) {
+    return typeof t == "object" && (t = u(s, t)), i = t(r, n || {}), this;
+  }, series(...t) {
+    return t.forEach((o) => this.proc(o)), this;
+  }, parallel(...t) {
+    return t.forEach((o) => this.sink(o)), this;
+  }, exec(t, o) {
+    return this.meta(o), this.proc(t);
   } };
 }
-function o(r) {
-  return typeof r == "object" ? l(r) : r;
+function a(r) {
+  return typeof r == "object" ? h(r) : r;
 }
-function v(r, t = "utf-8") {
-  return r = o(r), () => a.readFileSync(r, t);
+function v(r, n) {
+  return r = a(r || (n == null ? void 0 : n.path)), f.readFileSync(r, (n == null ? void 0 : n.options) || "utf-8");
 }
-function g(r, t) {
-  let i = o(t.path);
-  const e = h(i);
-  m(e, { recursive: !0 }), p(i, r.toString(), t.options);
+function g(r, n) {
+  let i = a(n == null ? void 0 : n.path);
+  const e = l(i);
+  return p(e, { recursive: !0 }), m(i, r.toString(), n == null ? void 0 : n.options), r;
 }
-function x(r, t) {
-  return r = o(r), a.readFileSync(r, t.options || "utf-8");
-}
-function A(r) {
+function w(r) {
   return () => r;
 }
-function E(r) {
+function x(r) {
   return r;
 }
-function w(...r) {
-  return (t, i) => r.reduce((e, s) => s(e, i), t);
+function A(...r) {
+  return (n, i) => r.reduce((e, s) => s(e, i), n);
 }
-function P(...r) {
-  return (t, i) => r.map((e) => e(t, i));
+function E(...r) {
+  return (n, i) => r.map((e) => e(n, i));
 }
-function q(r) {
+function P(r) {
   console.log(r);
 }
 export {
   d as bypass,
   k as dummySink,
   y as dummySrc,
-  v as file,
-  c as meta,
-  g as mkfile,
-  P as parallel,
-  q as print,
-  x as readFile,
-  E as ret,
-  w as series,
+  u as meta,
+  E as parallel,
+  P as print,
+  v as readFile,
+  x as ret,
+  A as series,
   j as stream,
-  A as val,
-  S as vesic
+  w as val,
+  S as vesic,
+  g as writeFile
 };

@@ -4,8 +4,8 @@ function stream(pipedValue, pipedMeta, pipedSinkVal) {
     let useProc, useSink;
 
     return {
-        src(srcFunc) {
-            pipedValue = srcFunc();
+        src(data) {
+            pipedValue = data;
             return this;
         },
         done: () => pipedSinkVal,

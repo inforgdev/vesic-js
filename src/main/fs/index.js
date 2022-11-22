@@ -1,9 +1,6 @@
-import { file } from "./src.js";
-import { mkfile } from "./sink.js";
-import { readFile } from "./proc.js";
+import { writeFile, readFile } from "./plugins.js";
 
 export {
-    file,
-    mkfile,
+    writeFile,
     readFile,
 };
