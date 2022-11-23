@@ -4,85 +4,77 @@ function y() {
   return () => {
   };
 }
-function d(r) {
+function k(r) {
   return r;
 }
-function k() {
+function d() {
 }
 function S(r) {
   if (Array.isArray(r))
-    return function(e) {
-      return e.map((u) => S(u));
+    return function(i) {
+      return i.map((o) => S(o));
     }(r);
-  r = function(e = {}) {
-    return function(u = y, n = d, s = k, c = {}) {
-      e.src = u, e.proc = n, e.sink = s, e.meta = c;
-    }(e.src, e.proc, e.sink, e.meta), e;
+  r = function(i = {}) {
+    return function(o = y, n = k, s = d, c = {}) {
+      i.src = o, i.proc = n, i.sink = s, i.meta = c;
+    }(i.src, i.proc, i.sink, i.meta), i;
   }(r);
-  let t = r.src, i = r.proc(t, r.meta);
-  return r.sink(i, r.meta);
+  let t = r.src, e = r.proc(t, r.meta);
+  return r.sink(e, r.meta);
 }
-function o(r, t) {
-  return (i) => r(i, t);
+function u(r, t) {
+  return (e) => r(e, t);
 }
-function j(r, t, i) {
-  let e, u;
+function j(...r) {
+  return (t, e) => r.map((i) => i(t, e));
+}
+function g(...r) {
+  return (t, e) => r.reduce((i, o) => o(i, e), t);
+}
+function v(r, t, e) {
+  let i, o;
   return { src(n) {
     return r = n, this;
-  }, done: () => i, meta(n) {
+  }, done: () => e, meta(n) {
     return t = n, this;
   }, useProc(n) {
-    return e = n, this;
+    return i = n, this;
   }, proc(n, s) {
-    return s && this.meta(s), typeof n == "object" && (n = o(e, n)), r = n(r, t || {}), this;
+    return s && this.meta(s), typeof n == "object" && (n = u(i, n)), r = n(r, t || {}), this;
   }, useSink(n) {
-    return u = n, this;
+    return o = n, this;
   }, sink(n, s) {
-    return s && this.meta(s), typeof n == "object" && (n = o(u, n)), i = n(r, t || {}), this;
+    return s && this.meta(s), typeof n == "object" && (n = u(o, n)), e = n(r, t || {}), this;
   }, series(...n) {
     return n.forEach((s) => this.proc(s)), this;
   }, parallel(...n) {
     return n.forEach((s) => this.sink(s)), this;
   } };
 }
+function w(r) {
+  console.log(r);
+}
 function a(r) {
   return typeof r == "object" ? h(r) : r;
 }
-function v(r, t) {
+function A(r, t) {
   return r = a(r || (t == null ? void 0 : t.path)), f.readFileSync(r, (t == null ? void 0 : t.options) || "utf-8");
 }
-function g(r, t) {
-  let i = a(t == null ? void 0 : t.path);
-  const e = l(i);
-  return m(e, { recursive: !0 }), p(i, r.toString(), t == null ? void 0 : t.options), r;
-}
-function w(r) {
-  return () => r;
-}
-function A(r) {
-  return r;
-}
-function E(...r) {
-  return (t, i) => r.reduce((e, u) => u(e, i), t);
-}
-function x(...r) {
-  return (t, i) => r.map((e) => e(t, i));
-}
-function P(r) {
-  console.log(r);
+function E(r, t) {
+  let e = a(t == null ? void 0 : t.path);
+  const i = l(e);
+  return m(i, { recursive: !0 }), p(e, r.toString(), t == null ? void 0 : t.options), r;
 }
 export {
-  d as bypass,
-  k as dummySink,
+  k as bypass,
+  d as dummySink,
   y as dummySrc,
-  o as meta,
-  x as parallel,
-  P as print,
-  v as readFile,
-  A as ret,
-  E as series,
-  j as stream,
-  w as val,
+  u as meta,
+  j as parallel,
+  w as print,
+  A as readFile,
+  g as series,
+  v as stream,
   S as vesic,
-  g as writeFile
+  E as writeFile
 };

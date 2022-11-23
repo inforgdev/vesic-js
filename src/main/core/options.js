@@ -1,4 +1,4 @@
-import { bypass, dummySink, dummySrc } from "../dummy/index.js";
+import { bypass, dummySink, dummySrc } from "../plugins/dummy/index.js";
 
 export function optionsVesic(options = {}) {
     function handle(src = dummySrc, proc = bypass, sink = dummySink, meta = {}) {

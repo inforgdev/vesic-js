@@ -1,16 +1,12 @@
-import { vesic, meta, stream } from "./core/index.js";
-import { dummySrc, bypass, dummySink } from "./dummy/index.js";
-import { writeFile, readFile } from "./fs/index.js";
-import { val, ret } from "./js/index.js";
-import { series, parallel } from "./compose/index.js";
-import { print } from "./std/index.js";
+import { vesic, stream, meta, series, parallel } from "./core/index.js";
+import { dummySrc, bypass, dummySink } from "./plugins/dummy/index.js";
+import { print } from "./plugins/std/index.js";
+import { writeFile, readFile } from "./plugins/fs/index.js";
 
 export {
     vesic, stream,
-    meta,
+    meta, parallel, series,
     dummySrc, bypass, dummySink,
     writeFile, readFile,
-    val, ret,
-    parallel, series,
     print,
 };
