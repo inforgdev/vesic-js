@@ -6,7 +6,7 @@ import { terser } from "rollup-plugin-terser";
 const pkg = JSON.parse(fs.readFileSync("package.json"));
 
 export default {
-    input: "./src/main/index.js",
+    input: "./src/main/lib/index.js",
     output: [
         {
             file: pkg.module,

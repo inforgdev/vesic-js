@@ -4,7 +4,7 @@ import { terser } from "rollup-plugin-terser";
 export default defineConfig({
     build: {
         lib: {
-            entry: "./src/main/index.js",
+            entry: "./src/main/lib/index.js",
             formats: [ "cjs", "es" ],
             name: "Vesic",
             fileName: "vesic",
