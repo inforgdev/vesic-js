@@ -1,7 +1,8 @@
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { join } from "path";
 import { afterAll, beforeAll } from "vitest";
 import { writeFile, readFile } from "../../dist/vesic.js";
+import { clean } from "../main/index.js";
 
 const mock = {
     data: "1",
@@ -40,4 +41,15 @@ test("fs: `writeFile()` should make a file recursively with data argument as its
 
     expect(fileData)
         .toBe(mock.data);
+});
+
+test("fs: `clean()` should delete a file recursively from the data argument and return the data argument", () => {
+    const sink = clean(mock.path.dirname);
+    const exists = existsSync(mock.path.dirname);
+
+    expect(!exists)
+        .toBe(true);
+
+    expect(sink)
+        .toBe(mock.path.dirname);
 });
