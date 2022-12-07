@@ -1,11 +1,11 @@
-import fs, { rmSync, writeFileSync, mkdirSync } from "fs";
+import { rmSync, readFileSync, writeFileSync, mkdirSync } from "fs";
 import { dirname } from "path";
 import { optionsPath } from "./options.js";
 import globSync from "glob/sync.js";
 
 export function readFile(path, meta) {
     path = optionsPath(path || meta?.path);
-    return fs.readFileSync(path, meta?.options || "utf-8");
+    return readFileSync(path, meta?.options || "utf-8");
 };
 
 export function writeFile(data, meta) {

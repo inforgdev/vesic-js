@@ -1,6 +1,6 @@
 import { meta } from "./utils.js";
 
-function stream(pipedValue, pipedMeta, pipedSinkVal) {
+export function stream(pipedValue, pipedMeta, pipedSinkVal) {
     let useProc, useSink;
 
     return {
@@ -45,5 +45,3 @@ function stream(pipedValue, pipedMeta, pipedSinkVal) {
         },
     };
 };
-
-export { stream };
