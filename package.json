@@ -1,6 +1,6 @@
 {
     "name": "vesic-js",
-    "version": "0.13.0",
+    "version": "0.14.0",
     "description": "Simple task runner written in JS.",
     "keywords": [
         "js",
@@ -18,6 +18,9 @@
     "repo": "github:inforgdev/vesic-js",
     "bugs": {
         "url": "https://github.com/inforgdev/vesic-js/issues"
+    },
+    "dependencies": {
+        "glob": "^8.0.3"
     },
     "devDependencies": {
         "rollup-plugin-terser": "^7.0.2",

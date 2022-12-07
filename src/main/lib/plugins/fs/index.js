@@ -1,6 +1,7 @@
-import { writeFile, readFile } from "./plugins.js";
+import { writeFile, readFile, clean } from "./plugins.js";
 
 export {
     writeFile,
     readFile,
+    clean,
 };

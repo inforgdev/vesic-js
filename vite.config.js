@@ -12,7 +12,7 @@ export default defineConfig({
         outDir: "dist/",
         minify: 'esbuild',
         rollupOptions: {
-            external: [ "fs", "path" ],
+            external: [ "fs", "path", "glob/sync.js" ],
             plugins: [ terser() ],
         },
     },

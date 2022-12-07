@@ -1,7 +1,7 @@
-import fs from "fs";
-import { writeFileSync, mkdirSync } from "fs";
+import fs, { rmSync, writeFileSync, mkdirSync } from "fs";
 import { dirname } from "path";
 import { optionsPath } from "./options.js";
+import globSync from "glob/sync.js";
 
 export function readFile(path, meta) {
     path = optionsPath(path || meta?.path);
@@ -17,3 +17,20 @@ export function writeFile(data, meta) {
 
     return data;
 };
+
+export function clean(path, meta) {
+    if(Array.isArray(path)) {
+        path.forEach((p) => clean(p));
+        return;
+    }
+
+    path = optionsPath(path);
+
+    const files = globSync(path);
+    
+    files.forEach((filepath) => {
+        rmSync(filepath, { recursive: true, force: true, ...meta?.options });
+    });
+
+    return path;
+}
