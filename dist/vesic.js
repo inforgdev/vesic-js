@@ -12,44 +12,44 @@ function E() {
 }
 function b(r) {
   if (Array.isArray(r))
-    return function(t) {
-      return t.map((i) => b(i));
+    return function(e) {
+      return e.map((a) => b(a));
     }(r);
-  r = function(t = {}) {
-    return function(i = A, n = w, a = E, l = {}) {
-      t.src = i, t.proc = n, t.sink = a, t.meta = l;
-    }(t.src, t.proc, t.sink, t.meta), t;
+  r = function(e = {}) {
+    return function(a = A, n = w, i = E, l = {}) {
+      e.src = a, e.proc = n, e.sink = i, e.meta = l;
+    }(e.src, e.proc, e.sink, e.meta), e;
   }(r);
-  let s = r.src, e = r.proc(s, r.meta);
-  return r.sink(e, r.meta);
+  let s = r.src, t = r.proc(s, r.meta);
+  return r.sink(t, r.meta);
 }
 function m(r, s) {
-  return (e) => r(e, s);
+  return (t) => r(t, s);
 }
 function D(...r) {
-  return (s, e) => r.map((t) => t(s, e));
+  return (s, t) => r.map((e) => e(s, t));
 }
 function V(...r) {
-  return (s, e) => r.reduce((t, i) => i(t, e), s);
+  return (s, t) => r.reduce((e, a) => a(e, t), s);
 }
-function _(r, s, e) {
-  let t, i;
+function _(r, s, t) {
+  let e, a;
   return { src(n) {
     return r = n, this;
-  }, done: () => e, meta(n) {
+  }, done: () => t, meta(n) {
     return s = n, this;
   }, useProc(n) {
-    return t = n, this;
-  }, proc(n, a) {
-    return a && this.meta(a), typeof n == "object" && (n = m(t, n)), r = n(r, s || {}), this;
+    return e = n, this;
+  }, proc(n, i) {
+    return i && this.meta(i), typeof n == "object" && (n = m(e, n)), r = n(r, s || {}), this;
   }, useSink(n) {
-    return i = n, this;
-  }, sink(n, a) {
-    return a && this.meta(a), typeof n == "object" && (n = m(i, n)), e = n(r, s || {}), this;
+    return a = n, this;
+  }, sink(n, i) {
+    return i && this.meta(i), typeof n == "object" && (n = m(a, n)), t = n(r, s || {}), this;
   }, series(...n) {
-    return n.forEach((a) => this.proc(a)), this;
+    return n.forEach((i) => this.proc(i)), this;
   }, parallel(...n) {
-    return n.forEach((a) => this.sink(a)), this;
+    return n.forEach((i) => this.sink(i)), this;
   } };
 }
 function q(r) {
@@ -62,23 +62,24 @@ function z(r, s) {
   return r = f(r || (s == null ? void 0 : s.path)), k(r, (s == null ? void 0 : s.options) || "utf-8");
 }
 function B(r, s) {
-  let e = f(s == null ? void 0 : s.path);
-  const t = v(e);
-  return h(t, { recursive: !0 }), d(e, r.toString(), s == null ? void 0 : s.options), r;
+  let t = f(s == null ? void 0 : s.path);
+  const e = v(t);
+  return h(e, { recursive: !0 }), d(t, r.toString(), s == null ? void 0 : s.options), r;
 }
 function T(r, s) {
-  return Array.isArray(r) ? void r.forEach((e) => T(e)) : (r = f(r), p(r).forEach((e) => {
-    y(e, { recursive: !0, force: !0, ...s == null ? void 0 : s.options });
+  return Array.isArray(r) ? void r.forEach((t) => T(t)) : (r = f(r), p(r).forEach((t) => {
+    y(t, { recursive: !0, force: !0, ...s == null ? void 0 : s.options });
   }), r);
 }
 const g = "./src/task/*.js";
 let o;
 const c = {}, j = (r) => c[r.id] = r, G = (r) => c[r] = void 0, H = (r) => c[r] !== void 0, J = () => process.env.VESIC_API = !0;
-function K(r) {
-  const s = Date.now();
-  c[r].main();
+function K(r, s, t) {
+  s = { id: r, ...s };
   const e = Date.now();
-  return { start: s, stop: e, dur: e - s };
+  c[r].main(s, t);
+  const a = Date.now();
+  return { start: e, stop: a, dur: a - e };
 }
 function L(r) {
   process.env.VESIC_API === "true" ? process.emit("task", r) : r.main();
@@ -93,8 +94,8 @@ function C() {
 async function M(r = g) {
   C();
   const s = await p(r, {});
-  for (let e of s)
-    o = e, await import(u.resolve(e));
+  for (let t of s)
+    o = t, await import(u.resolve(t));
 }
 export {
   w as bypass,

@@ -11,9 +11,14 @@ export const unregisterTask = (taskId) => tasks[taskId] = undefined;
 export const hasTask = (id) => tasks[id] !== undefined;
 export const initApi = () => process.env['VESIC_API'] = true;
 
-export function runTask(id) {
+export function runTask(id, options, data) {
+    options = {
+        id,
+        ...options,
+    };
+
     const start = Date.now();
-    tasks[id].main();
+    tasks[id].main(options, data);
     const stop = Date.now();
 
     return {
