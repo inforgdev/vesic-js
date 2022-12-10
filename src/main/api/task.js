@@ -11,6 +11,12 @@ export const unregisterTask = (taskId) => tasks[taskId] = undefined;
 export const hasTask = (id) => tasks[id] !== undefined;
 export const initApi = () => process.env['VESIC_API'] = true;
 
+export function isTaskRunnable(id) {
+    if(!hasTask(id) || !tasks[id].main) return false;
+
+    return (typeof tasks[id].main) === "function";
+}
+
 export function runTask(id, options, data) {
     options = {
         id,

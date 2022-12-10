@@ -5,118 +5,122 @@ function A() {
   return () => {
   };
 }
-function w(r) {
-  return r;
+function b(s) {
+  return s;
 }
-function E() {
+function w() {
 }
-function b(r) {
-  if (Array.isArray(r))
-    return function(e) {
-      return e.map((a) => b(a));
-    }(r);
-  r = function(e = {}) {
-    return function(a = A, n = w, i = E, l = {}) {
-      e.src = a, e.proc = n, e.sink = i, e.meta = l;
-    }(e.src, e.proc, e.sink, e.meta), e;
-  }(r);
-  let s = r.src, t = r.proc(s, r.meta);
-  return r.sink(t, r.meta);
+function E(s) {
+  if (Array.isArray(s))
+    return function(r) {
+      return r.map((a) => E(a));
+    }(s);
+  s = function(r = {}) {
+    return function(a = A, e = b, i = w, l = {}) {
+      r.src = a, r.proc = e, r.sink = i, r.meta = l;
+    }(r.src, r.proc, r.sink, r.meta), r;
+  }(s);
+  let n = s.src, t = s.proc(n, s.meta);
+  return s.sink(t, s.meta);
 }
-function m(r, s) {
-  return (t) => r(t, s);
+function m(s, n) {
+  return (t) => s(t, n);
 }
-function D(...r) {
-  return (s, t) => r.map((e) => e(s, t));
+function V(...s) {
+  return (n, t) => s.map((r) => r(n, t));
 }
-function V(...r) {
-  return (s, t) => r.reduce((e, a) => a(e, t), s);
+function _(...s) {
+  return (n, t) => s.reduce((r, a) => a(r, t), n);
 }
-function _(r, s, t) {
-  let e, a;
-  return { src(n) {
-    return r = n, this;
-  }, done: () => t, meta(n) {
-    return s = n, this;
-  }, useProc(n) {
-    return e = n, this;
-  }, proc(n, i) {
-    return i && this.meta(i), typeof n == "object" && (n = m(e, n)), r = n(r, s || {}), this;
-  }, useSink(n) {
-    return a = n, this;
-  }, sink(n, i) {
-    return i && this.meta(i), typeof n == "object" && (n = m(a, n)), t = n(r, s || {}), this;
-  }, series(...n) {
-    return n.forEach((i) => this.proc(i)), this;
-  }, parallel(...n) {
-    return n.forEach((i) => this.sink(i)), this;
+function q(s, n, t) {
+  let r, a;
+  return { src(e) {
+    return s = e, this;
+  }, done: () => t, meta(e) {
+    return n = e, this;
+  }, useProc(e) {
+    return r = e, this;
+  }, proc(e, i) {
+    return i && this.meta(i), typeof e == "object" && (e = m(r, e)), s = e(s, n || {}), this;
+  }, useSink(e) {
+    return a = e, this;
+  }, sink(e, i) {
+    return i && this.meta(i), typeof e == "object" && (e = m(a, e)), t = e(s, n || {}), this;
+  }, series(...e) {
+    return e.forEach((i) => this.proc(i)), this;
+  }, parallel(...e) {
+    return e.forEach((i) => this.sink(i)), this;
   } };
 }
-function q(r) {
-  console.log(r);
+function R(s) {
+  console.log(s);
 }
-function f(r) {
-  return typeof r == "object" ? S(r) : r;
+function f(s) {
+  return typeof s == "object" ? S(s) : s;
 }
-function z(r, s) {
-  return r = f(r || (s == null ? void 0 : s.path)), k(r, (s == null ? void 0 : s.options) || "utf-8");
+function z(s, n) {
+  return s = f(s || (n == null ? void 0 : n.path)), k(s, (n == null ? void 0 : n.options) || "utf-8");
 }
-function B(r, s) {
-  let t = f(s == null ? void 0 : s.path);
-  const e = v(t);
-  return h(e, { recursive: !0 }), d(t, r.toString(), s == null ? void 0 : s.options), r;
+function B(s, n) {
+  let t = f(n == null ? void 0 : n.path);
+  const r = v(t);
+  return h(r, { recursive: !0 }), d(t, s.toString(), n == null ? void 0 : n.options), s;
 }
-function T(r, s) {
-  return Array.isArray(r) ? void r.forEach((t) => T(t)) : (r = f(r), p(r).forEach((t) => {
-    y(t, { recursive: !0, force: !0, ...s == null ? void 0 : s.options });
-  }), r);
+function T(s, n) {
+  return Array.isArray(s) ? void s.forEach((t) => T(t)) : (s = f(s), p(s).forEach((t) => {
+    y(t, { recursive: !0, force: !0, ...n == null ? void 0 : n.options });
+  }), s);
 }
 const g = "./src/task/*.js";
-let o;
-const c = {}, j = (r) => c[r.id] = r, G = (r) => c[r] = void 0, H = (r) => c[r] !== void 0, J = () => process.env.VESIC_API = !0;
-function K(r, s, t) {
-  s = { id: r, ...s };
-  const e = Date.now();
-  c[r].main(s, t);
+let c;
+const o = {}, j = (s) => o[s.id] = s, G = (s) => o[s] = void 0, I = (s) => o[s] !== void 0, H = () => process.env.VESIC_API = !0;
+function J(s) {
+  return !(!I(s) || !o[s].main) && typeof o[s].main == "function";
+}
+function K(s, n, t) {
+  n = { id: s, ...n };
+  const r = Date.now();
+  o[s].main(n, t);
   const a = Date.now();
-  return { start: e, stop: a, dur: a - e };
+  return { start: r, stop: a, dur: a - r };
 }
-function L(r) {
-  process.env.VESIC_API === "true" ? process.emit("task", r) : r.main();
+function L(s) {
+  process.env.VESIC_API === "true" ? process.emit("task", s) : s.main();
 }
-function I(r) {
-  const s = { id: u.basename(o || "", u.extname(o || "")), url: o, ...r };
-  j(s);
+function C(s) {
+  const n = { id: u.basename(c || "", u.extname(c || "")), url: c, ...s };
+  j(n);
 }
-function C() {
-  process.listenerCount("task") == 0 && process.on("task", I);
+function F() {
+  process.listenerCount("task") == 0 && process.on("task", C);
 }
-async function M(r = g) {
-  C();
-  const s = await p(r, {});
-  for (let t of s)
-    o = t, await import(u.resolve(t));
+async function M(s = g) {
+  F();
+  const n = await p(s, {});
+  for (let t of n)
+    c = t, await import(u.resolve(t));
 }
 export {
-  w as bypass,
+  b as bypass,
   T as clean,
-  E as dummySink,
+  w as dummySink,
   A as dummySrc,
-  H as hasTask,
-  J as initApi,
-  C as listenTask,
+  I as hasTask,
+  H as initApi,
+  J as isTaskRunnable,
+  F as listenTask,
   M as loadTasks,
   m as meta,
-  D as parallel,
-  q as print,
+  V as parallel,
+  R as print,
   z as readFile,
   j as registerTask,
   K as runTask,
-  V as series,
-  _ as stream,
+  _ as series,
+  q as stream,
   L as task,
-  c as tasks,
+  o as tasks,
   G as unregisterTask,
-  b as vesic,
+  E as vesic,
   B as writeFile
 };
