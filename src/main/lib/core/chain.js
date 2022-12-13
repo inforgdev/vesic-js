@@ -1,6 +1,6 @@
 import { meta } from "./utils.js";
 
-export function stream(pipedValue, pipedMeta, pipedSinkVal) {
+export function chain(pipedValue, pipedMeta, pipedSinkVal) {
     let useProc, useSink;
 
     return {

@@ -119,6 +119,7 @@ function X(s, e) {
 }
 export {
   A as bypass,
+  H as chain,
   F as clean,
   E as dummySink,
   g as dummySrc,
@@ -136,7 +137,6 @@ export {
   C as registerTask,
   x as runTask,
   G as series,
-  H as stream,
   O as task,
   o as tasks,
   L as unregisterTask,

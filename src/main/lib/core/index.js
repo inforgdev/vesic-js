@@ -1,3 +1,3 @@
 export * from "./vesic.js";
-export * from "./stream.js";
+export * from "./chain.js";
 export * from "./utils.js";

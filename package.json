@@ -1,6 +1,6 @@
 {
     "name": "vesic-js",
-    "version": "0.18.0",
+    "version": "0.19.0",
     "description": "Simple task runner written in JS.",
     "keywords": [
         "js",
