@@ -1,6 +1,6 @@
 {
     "name": "vesic-js",
-    "version": "0.20.0",
+    "version": "0.20.1",
     "description": "Simple task runner written in JS.",
     "keywords": [
         "js",
@@ -39,7 +39,9 @@
     },
     "main": "./dist/vesic.cjs",
     "module": "./dist/vesic.js",
-    "bin": "./src/main/cli/index.js",
+    "bin": {
+        "vesic": "./src/main/cli/index.js"
+    },
     "exports": {
         ".": {
             "require": "./dist/vesic.cjs",
