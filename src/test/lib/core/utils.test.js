@@ -1,4 +1,4 @@
-import { parallel, series } from "../../../../dist/vesic.js";
+import { parallel, series } from "@/dist/vesic.js";
 
 test("utils: `parallel()` should run every sink with the same input", () => {
     const sink = (input, meta) => input + meta; 

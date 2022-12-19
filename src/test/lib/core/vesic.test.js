@@ -1,4 +1,4 @@
-import { bypass, vesic } from "../../../../dist/vesic.js";
+import { bypass, vesic } from "@/dist/vesic.js";
 
 test("core: should run vesic config", () => {
     const data = "1";

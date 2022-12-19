@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { join } from "path";
 import { afterAll, beforeAll } from "vitest";
-import { mkfile, cat, clean } from "../../../../dist/vesic.js";
+import { mkfile, cat, clean } from "@/dist/vesic.js";
 
 const mock = {
     data: "1",
