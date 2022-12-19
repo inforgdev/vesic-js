@@ -1,22 +1,43 @@
-import { rmSync, readFileSync, writeFileSync, mkdirSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, rmSync } from "fs";
+import globSync from "glob/sync.js";
 import { dirname } from "path";
 import { optionsPath } from "./options.js";
-import globSync from "glob/sync.js";
+import { handleWrite } from "./utils.js";
 
-export function readFile(path, meta) {
+export function cat(path, meta) {
     path = optionsPath(path || meta?.path);
     return readFileSync(path, meta?.options || "utf-8");
-};
+}
 
-export function writeFile(data, meta) {
+export function mkfile(data, meta) {
     let entry = optionsPath(meta?.path);
     const targetDir = dirname(entry);
+    let mkdir = data !== undefined;
+    let handleObject;
 
-    mkdirSync(targetDir, { recursive: true, });
-    writeFileSync(entry, data.toString(), meta?.options);
+    if(typeof data === "object") {
+        const { a, w, p } = data;
+
+        if(!a && !w && !p) {
+            mkdir = false;
+            return data;
+        }
+
+        handleObject = () => handleWrite(entry, { a, w, p }, meta);
+    }
+
+    if(!existsSync(entry) && mkdir) {
+        mkdirSync(targetDir, { recursive: true });
+    }
+
+    if(handleObject) {
+        handleObject();
+    } else {
+        handleWrite(entry, { w: data }, meta);
+    }
 
     return data;
-};
+}
 
 export function clean(path, meta) {
     if(Array.isArray(path)) {

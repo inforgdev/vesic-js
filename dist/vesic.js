@@ -1,145 +1,174 @@
-import k, { readFileSync as d, mkdirSync as y, writeFileSync as v, rmSync as S } from "fs";
-import c, { format as b, dirname as w } from "path";
-import m from "glob/sync.js";
-function T() {
+import w, { readFileSync as y, openSync as v, writeSync as k, close as g, writeFileSync as b, appendFileSync as T, existsSync as j, mkdirSync as A, rmSync as E } from "fs";
+import l from "glob/sync.js";
+import f, { format as P, dirname as F } from "path";
+function I() {
   return () => {
   };
 }
-function g(e) {
+function x(e) {
   return e;
 }
-function A() {
+function C() {
 }
-function E(e) {
+function W(e) {
   if (Array.isArray(e))
     return function(t) {
-      return t.map((n) => E(n));
+      return t.map((i) => W(i));
     }(e);
-  let s = (e = function(t = {}) {
-    return function(n = T, a = g, f = A, p = {}) {
-      t.src = n, t.proc = a, t.sink = f, t.meta = p;
+  let n = (e = function(t = {}) {
+    return function(i = I, a = x, r = C, o = {}) {
+      t.src = i, t.proc = a, t.sink = r, t.meta = o;
     }(t.src, t.proc, t.sink, t.meta), t;
-  }(e)).src, r = e.proc(s, e.meta);
-  return e.sink(r, e.meta);
+  }(e)).src, s = e.proc(n, e.meta);
+  return e.sink(s, e.meta);
 }
-function z() {
-  let e = { pipe: void 0, meta: void 0, sink: void 0, curProc: void 0, curSink: void 0 };
-  return { src(s) {
-    return e.pipe = s, this;
-  }, done: () => e.sink, meta(s) {
-    return e.meta = s, this;
-  }, useProc(s) {
-    return e.curProc = s, this;
-  }, proc(s, r) {
-    return r && this.meta(r), typeof s == "object" && (s = meta(e.curProc, s)), e.pipe = s(e.pipe, e.meta || {}), this;
-  }, useSink(s) {
-    return e.curSink = s, this;
-  }, sink(s, r) {
-    return r && this.meta(r), typeof s == "object" && (s = meta(e.curSink, s)), e.sink = s(e.pipe, e.meta || {}), this;
-  }, series(...s) {
-    return s.forEach((r) => this.proc(r)), this;
-  }, parallel(...s) {
-    return s.forEach((r) => this.sink(r)), this;
+function M() {
+  let e = {};
+  return { src(n) {
+    return e.pipe = n, this;
+  }, done: () => e.sink, meta(n) {
+    return e.meta = n, this;
+  }, useProc(n) {
+    return e.curProc = n, this;
+  }, proc(n, s) {
+    return s && this.meta(s), typeof n == "object" && (n = meta(e.curProc, n)), e.pipe = n(e.pipe, e.meta || {}), this;
+  }, useSink(n) {
+    return e.curSink = n, this;
+  }, sink(n, s) {
+    return s && this.meta(s), typeof n == "object" && (n = meta(e.curSink, n)), e.sink = n(e.pipe, e.meta || {}), this;
+  }, series(...n) {
+    return n.forEach((s) => this.proc(s)), this;
+  }, parallel(...n) {
+    return n.forEach((s) => this.sink(s)), this;
   } };
 }
-function B(e, s) {
-  return (r) => e(r, s);
+function N(e, n) {
+  return (s) => e(s, n);
 }
-function G(...e) {
-  return (s, r) => e.map((t) => t(s, r));
+function Q(...e) {
+  return (n, s) => e.map((t) => t(n, s));
 }
-function H(...e) {
-  return (s, r) => e.reduce((t, n) => n(t, r), s);
+function U(...e) {
+  return (n, s) => e.reduce((t, i) => i(t, s), n);
 }
-function R(e) {
+function X(e) {
   console.log(e);
 }
-function l(e) {
-  return typeof e == "object" ? b(e) : e;
+function m(e) {
+  return typeof e == "object" ? P(e) : e;
 }
-function J(e, s) {
-  return e = l(e || (s == null ? void 0 : s.path)), d(e, (s == null ? void 0 : s.options) || "utf-8");
+function D(e) {
+  let n = "";
+  return e.p && (n += e.p), e.w && (n += e.w), e.a && (n += e.a), n;
 }
-function K(e, s) {
-  let r = l(s == null ? void 0 : s.path);
-  const t = w(r);
-  return y(t, { recursive: !0 }), v(r, e.toString(), s == null ? void 0 : s.options), e;
+function V(e, n, s) {
+  let t = y(e);
+  s && (t += s.toString());
+  const i = v(e, "w+"), a = Buffer.from(n);
+  k(i, a, 0, a.length, 0), k(i, t, 0, t.length, a.length), g(i, (r) => {
+    if (r)
+      throw r;
+  });
 }
-function P(e, s) {
-  return Array.isArray(e) ? void e.forEach((r) => P(r)) : (e = l(e), m(e).forEach((r) => {
-    S(r, { recursive: !0, force: !0, ...s == null ? void 0 : s.options });
+function d(e, n, s) {
+  let { p: t, w: i, a } = n;
+  if (i)
+    return n = D(n), void b(e, n.toString(), s == null ? void 0 : s.options);
+  t === void 0 && a === void 0 || (t === void 0 && a ? T(e, a.toString(), s == null ? void 0 : s.options) : V(e, t, a));
+}
+function Y(e, n) {
+  return e = m(e || (n == null ? void 0 : n.path)), y(e, (n == null ? void 0 : n.options) || "utf-8");
+}
+function Z(e, n) {
+  let s = m(n == null ? void 0 : n.path);
+  const t = F(s);
+  let i, a = e !== void 0;
+  if (typeof e == "object") {
+    const { a: r, w: o, p: h } = e;
+    if (!r && !o && !h)
+      return a = !1, e;
+    i = () => d(s, { a: r, w: o, p: h }, n);
+  }
+  return !j(s) && a && A(t, { recursive: !0 }), i ? i() : d(s, { w: e }, n), e;
+}
+function _(e, n) {
+  return Array.isArray(e) ? void e.forEach((s) => _(s)) : (e = m(e), l(e).forEach((s) => {
+    E(s, { recursive: !0, force: !0, ...n == null ? void 0 : n.options });
   }), e);
 }
-const j = "./src/task/*.js", h = { glob: "./src/**/*.js", delay: 100 };
-let o;
-const i = {}, F = (e) => i[e.id] = e, L = (e) => i[e] = void 0, I = (e) => i[e] !== void 0, M = () => process.env.VESIC_API = !0;
-function N(e) {
-  return !(!I(e) || !i[e].main) && typeof i[e].main == "function";
+const B = "./src/task/*.js", S = { glob: "./src/**/*.js", delay: 100 };
+let u;
+const c = {}, O = (e) => c[e.id] = e, $ = (e) => c[e] = void 0, R = (e) => c[e] !== void 0, ee = () => process.env.VESIC_API = !0;
+function ne(e) {
+  return !(!R(e) || !c[e].main) && typeof c[e].main == "function";
 }
-function C(e, s, r) {
-  s = { id: e, ...s };
+function q(e, n, s) {
+  n = { id: e, ...n };
   const t = Date.now();
-  i[e].main(s, r);
-  const n = Date.now();
-  return { start: t, stop: n, dur: n - t };
+  c[e].main(n, s);
+  const i = Date.now();
+  return { start: t, stop: i, dur: i - t };
 }
-function O(e) {
+function se(e) {
   process.env.VESIC_API === "true" ? process.emit("task", e) : e.main();
 }
-function x(e) {
-  const s = { id: c.basename(o || "", c.extname(o || "")), url: o, ...e };
-  F(s);
+function z(e) {
+  const n = { id: f.basename(u || "", f.extname(u || "")), url: u, ...e };
+  O(n);
 }
-function D() {
-  process.listenerCount("task") == 0 && process.on("task", x);
+function G() {
+  process.listenerCount("task") == 0 && process.on("task", z);
 }
-async function Q(e = j) {
-  D();
-  const s = await m(e, {});
-  for (let r of s)
-    o = r, await import(c.resolve(r));
+async function te(e = B) {
+  G();
+  const n = await l(e, {});
+  for (let s of n)
+    u = s, await import(f.resolve(s));
 }
-let u;
-const U = () => u.length > 0;
-function V(e = h.glob) {
-  return u = m(e), e;
+let p;
+const ie = () => p.length > 0;
+function H(e = S.glob) {
+  return p = l(e), e;
 }
-function X(e, s) {
-  s = { ...h, ...s }, !u && V(s.glob);
-  const r = { id: e, ...s };
-  u.forEach((t, n) => {
+function ae(e, n) {
+  n = { ...S, ...n }, !p && H(n.glob);
+  const s = { id: e, ...n };
+  p.forEach((t, i) => {
     let a = !1;
-    k.watch(c.resolve(t), (f, p) => {
-      a || (a = !0, C(e, r, { watch: { event: f, filename: p, file: t } }), setTimeout(() => {
+    w.watch(f.resolve(t), (r, o) => {
+      a || (a = !0, q(e, s, { watch: { event: r, filename: o, file: t } }), setTimeout(() => {
         a = !1;
-      }, s.delay));
+      }, n.delay));
     });
   });
 }
 export {
-  g as bypass,
-  z as chain,
-  P as clean,
-  A as dummySink,
-  T as dummySrc,
-  I as hasTask,
-  U as hasWatchables,
-  M as initApi,
-  V as initWatch,
-  N as isTaskRunnable,
-  D as listenTask,
-  Q as loadTasks,
-  B as meta,
-  G as parallel,
-  R as print,
-  J as readFile,
-  F as registerTask,
-  C as runTask,
-  H as series,
-  O as task,
-  i as tasks,
-  L as unregisterTask,
-  E as vesic,
-  X as watchTask,
-  K as writeFile
+  x as bypass,
+  Y as cat,
+  M as chain,
+  _ as clean,
+  C as dummySink,
+  I as dummySrc,
+  D as formatWriteObj,
+  d as handleWrite,
+  R as hasTask,
+  ie as hasWatchables,
+  ee as initApi,
+  H as initWatch,
+  ne as isTaskRunnable,
+  G as listenTask,
+  te as loadTasks,
+  N as meta,
+  Z as mkfile,
+  Q as parallel,
+  V as prependFile,
+  X as print,
+  O as registerTask,
+  q as runTask,
+  U as series,
+  se as task,
+  c as tasks,
+  $ as unregisterTask,
+  W as vesic,
+  ae as watchTask
 };
