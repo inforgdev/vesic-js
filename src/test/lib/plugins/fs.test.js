@@ -1,8 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { join } from "path";
 import { afterAll, beforeAll } from "vitest";
-import { writeFile, readFile } from "../../dist/vesic.js";
-import { clean } from "../main/index.js";
+import { mkfile, cat, clean } from "../../../../dist/vesic.js";
 
 const mock = {
     data: "1",
@@ -24,10 +23,10 @@ const mk = () => {
 beforeAll(() => rm());
 afterAll(() => rm());
 
-test("fs: `readFile()` should return a function that reads a file recursively from the meta path property and returns its content", () => {
+test("fs: `cat()` should return a function that reads a file recursively from the meta path property and returns its content", () => {
     mk();
 
-    const src = readFile(path);
+    const src = cat(path);
     const auto = src; 
     const manual = readFileSync(path, "utf-8");
 
@@ -35,8 +34,8 @@ test("fs: `readFile()` should return a function that reads a file recursively fr
         .toBe(manual);
 });
 
-test("fs: `writeFile()` should make a file recursively with data argument as its content", () => {
-    writeFile(mock.data, { path });
+test("fs: `mkfile()` should make a file recursively with data argument as its content", () => {
+    mkfile(mock.data, { path });
     const fileData = readFileSync(path, "utf-8");
 
     expect(fileData)
