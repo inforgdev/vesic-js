@@ -16,4 +16,7 @@ export default defineConfig({
             plugins: [ terser() ],
         },
     },
+    test: {
+        globals: true,
+    },
 });
