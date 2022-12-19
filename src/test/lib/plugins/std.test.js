@@ -1,4 +1,4 @@
-import { print } from "../../dist/vesic.js";
+import { print } from "../../../../dist/vesic.js";
 
 test("std: should run `console.log`", () => {
     const data = "1";
