@@ -1,46 +1,44 @@
-import { meta } from "./utils.js";
-
-export function chain(pipedValue, pipedMeta, pipedSinkVal) {
-    let useProc, useSink;
+export function chain() {
+    let deps = {};
 
     return {
         src(data) {
-            pipedValue = data;
+            deps.pipe = data;
             return this;
         },
-        done: () => pipedSinkVal,
-        meta(metaObj) {
-            pipedMeta = metaObj;
+        done: () => deps.sink,
+        meta(obj) {
+            deps.meta = obj;
             return this;
         },
         useProc(func) {
-            useProc = func;
+            deps.curProc = func;
             return this;
         },
-        proc(value, inlineMeta) {
+        proc(plugin, inlineMeta) {
             if(inlineMeta) this.meta(inlineMeta);
 
-            if(typeof value === "object") value = meta(useProc, value);
-            pipedValue = value(pipedValue, pipedMeta || {});
+            if(typeof plugin === "object") plugin = meta(deps.curProc, plugin);
+            deps.pipe = plugin(deps.pipe, deps.meta || {});
             return this;
         },
         useSink(func) {
-            useSink = func;
+            deps.curSink = func;
             return this;
         },
-        sink(value, inlineMeta) {
+        sink(plugin, inlineMeta) {
             if(inlineMeta) this.meta(inlineMeta);
 
-            if(typeof value === "object") value = meta(useSink, value);
-            pipedSinkVal = value(pipedValue, pipedMeta || {});
+            if(typeof plugin === "object") plugin = meta(deps.curSink, plugin);
+            deps.sink = plugin(deps.pipe, deps.meta || {});
             return this;
         },
-        series(...procValues) {
-            procValues.forEach(func => this.proc(func));
+        series(...plugins) {
+            plugins.forEach(func => this.proc(func));
             return this;
         },
-        parallel(...sinkValues) {
-            sinkValues.forEach(func => this.sink(func));
+        parallel(...plugins) {
+            plugins.forEach(func => this.sink(func));
             return this;
         },
     };
