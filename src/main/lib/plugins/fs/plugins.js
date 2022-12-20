@@ -41,7 +41,7 @@ export function mkfile(data, meta) {
 
 export function clean(path, meta) {
     if(Array.isArray(path)) {
-        path.forEach((p) => clean(p));
+        path.forEach((p) => clean(p, meta));
         return;
     }
 

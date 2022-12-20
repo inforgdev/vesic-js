@@ -15,41 +15,41 @@ function W(e) {
     return function(t) {
       return t.map((i) => W(i));
     }(e);
-  let n = (e = function(t = {}) {
+  let s = (e = function(t = {}) {
     return function(i = I, a = x, r = C, o = {}) {
       t.src = i, t.proc = a, t.sink = r, t.meta = o;
     }(t.src, t.proc, t.sink, t.meta), t;
-  }(e)).src, s = e.proc(n, e.meta);
-  return e.sink(s, e.meta);
+  }(e)).src, n = e.proc(s, e.meta);
+  return e.sink(n, e.meta);
 }
 function M() {
   let e = {};
-  return { src(n) {
-    return e.pipe = n, this;
-  }, done: () => e.sink, meta(n) {
-    return e.meta = n, this;
-  }, useProc(n) {
-    return e.curProc = n, this;
-  }, proc(n, s) {
-    return s && this.meta(s), typeof n == "object" && (n = meta(e.curProc, n)), e.pipe = n(e.pipe, e.meta || {}), this;
-  }, useSink(n) {
-    return e.curSink = n, this;
-  }, sink(n, s) {
-    return s && this.meta(s), typeof n == "object" && (n = meta(e.curSink, n)), e.sink = n(e.pipe, e.meta || {}), this;
-  }, series(...n) {
-    return n.forEach((s) => this.proc(s)), this;
-  }, parallel(...n) {
-    return n.forEach((s) => this.sink(s)), this;
+  return { src(s) {
+    return e.pipe = s, this;
+  }, done: () => e.sink, meta(s) {
+    return e.meta = s, this;
+  }, useProc(s) {
+    return e.curProc = s, this;
+  }, proc(s, n) {
+    return n && this.meta(n), typeof s == "object" && (s = meta(e.curProc, s)), e.pipe = s(e.pipe, e.meta || {}), this;
+  }, useSink(s) {
+    return e.curSink = s, this;
+  }, sink(s, n) {
+    return n && this.meta(n), typeof s == "object" && (s = meta(e.curSink, s)), e.sink = s(e.pipe, e.meta || {}), this;
+  }, series(...s) {
+    return s.forEach((n) => this.proc(n)), this;
+  }, parallel(...s) {
+    return s.forEach((n) => this.sink(n)), this;
   } };
 }
-function N(e, n) {
-  return (s) => e(s, n);
+function N(e, s) {
+  return (n) => e(n, s);
 }
 function Q(...e) {
-  return (n, s) => e.map((t) => t(n, s));
+  return (s, n) => e.map((t) => t(s, n));
 }
 function U(...e) {
-  return (n, s) => e.reduce((t, i) => i(t, s), n);
+  return (s, n) => e.reduce((t, i) => i(t, n), s);
 }
 function X(e) {
   console.log(e);
@@ -58,87 +58,87 @@ function m(e) {
   return typeof e == "object" ? P(e) : e;
 }
 function D(e) {
-  let n = "";
-  return e.p && (n += e.p), e.w && (n += e.w), e.a && (n += e.a), n;
+  let s = "";
+  return e.p && (s += e.p), e.w && (s += e.w), e.a && (s += e.a), s;
 }
-function V(e, n, s) {
+function V(e, s, n) {
   let t = y(e);
-  s && (t += s.toString());
-  const i = v(e, "w+"), a = Buffer.from(n);
+  n && (t += n.toString());
+  const i = v(e, "w+"), a = Buffer.from(s);
   k(i, a, 0, a.length, 0), k(i, t, 0, t.length, a.length), g(i, (r) => {
     if (r)
       throw r;
   });
 }
-function d(e, n, s) {
-  let { p: t, w: i, a } = n;
+function d(e, s, n) {
+  let { p: t, w: i, a } = s;
   if (i)
-    return n = D(n), void b(e, n.toString(), s == null ? void 0 : s.options);
-  t === void 0 && a === void 0 || (t === void 0 && a ? T(e, a.toString(), s == null ? void 0 : s.options) : V(e, t, a));
+    return s = D(s), void b(e, s.toString(), n == null ? void 0 : n.options);
+  t === void 0 && a === void 0 || (t === void 0 && a ? T(e, a.toString(), n == null ? void 0 : n.options) : V(e, t, a));
 }
-function Y(e, n) {
-  return e = m(e || (n == null ? void 0 : n.path)), y(e, (n == null ? void 0 : n.options) || "utf-8");
+function Y(e, s) {
+  return e = m(e || (s == null ? void 0 : s.path)), y(e, (s == null ? void 0 : s.options) || "utf-8");
 }
-function Z(e, n) {
-  let s = m(n == null ? void 0 : n.path);
-  const t = F(s);
+function Z(e, s) {
+  let n = m(s == null ? void 0 : s.path);
+  const t = F(n);
   let i, a = e !== void 0;
   if (typeof e == "object") {
     const { a: r, w: o, p: h } = e;
     if (!r && !o && !h)
       return a = !1, e;
-    i = () => d(s, { a: r, w: o, p: h }, n);
+    i = () => d(n, { a: r, w: o, p: h }, s);
   }
-  return !j(s) && a && A(t, { recursive: !0 }), i ? i() : d(s, { w: e }, n), e;
+  return !j(n) && a && A(t, { recursive: !0 }), i ? i() : d(n, { w: e }, s), e;
 }
-function _(e, n) {
-  return Array.isArray(e) ? void e.forEach((s) => _(s)) : (e = m(e), l(e).forEach((s) => {
-    E(s, { recursive: !0, force: !0, ...n == null ? void 0 : n.options });
+function _(e, s) {
+  return Array.isArray(e) ? void e.forEach((n) => _(n, s)) : (e = m(e), l(e).forEach((n) => {
+    E(n, { recursive: !0, force: !0, ...s == null ? void 0 : s.options });
   }), e);
 }
 const B = "./src/task/*.js", S = { glob: "./src/**/*.js", delay: 100 };
 let u;
 const c = {}, O = (e) => c[e.id] = e, $ = (e) => c[e] = void 0, R = (e) => c[e] !== void 0, ee = () => process.env.VESIC_API = !0;
-function ne(e) {
+function se(e) {
   return !(!R(e) || !c[e].main) && typeof c[e].main == "function";
 }
-function q(e, n, s) {
-  n = { id: e, ...n };
+function q(e, s, n) {
+  s = { id: e, ...s };
   const t = Date.now();
-  c[e].main(n, s);
+  c[e].main(s, n);
   const i = Date.now();
   return { start: t, stop: i, dur: i - t };
 }
-function se(e) {
+function ne(e) {
   process.env.VESIC_API === "true" ? process.emit("task", e) : e.main();
 }
 function z(e) {
-  const n = { id: f.basename(u || "", f.extname(u || "")), url: u, ...e };
-  O(n);
+  const s = { id: f.basename(u || "", f.extname(u || "")), url: u, ...e };
+  O(s);
 }
 function G() {
   process.listenerCount("task") == 0 && process.on("task", z);
 }
 async function te(e = B) {
   G();
-  const n = await l(e, {});
-  for (let s of n)
-    u = s, await import(f.resolve(s));
+  const s = await l(e, {});
+  for (let n of s)
+    u = n, await import(f.resolve(n));
 }
 let p;
 const ie = () => p.length > 0;
 function H(e = S.glob) {
   return p = l(e), e;
 }
-function ae(e, n) {
-  n = { ...S, ...n }, !p && H(n.glob);
-  const s = { id: e, ...n };
+function ae(e, s) {
+  s = { ...S, ...s }, !p && H(s.glob);
+  const n = { id: e, ...s };
   p.forEach((t, i) => {
     let a = !1;
     w.watch(f.resolve(t), (r, o) => {
-      a || (a = !0, q(e, s, { watch: { event: r, filename: o, file: t } }), setTimeout(() => {
+      a || (a = !0, q(e, n, { watch: { event: r, filename: o, file: t } }), setTimeout(() => {
         a = !1;
-      }, n.delay));
+      }, s.delay));
     });
   });
 }
@@ -155,7 +155,7 @@ export {
   ie as hasWatchables,
   ee as initApi,
   H as initWatch,
-  ne as isTaskRunnable,
+  se as isTaskRunnable,
   G as listenTask,
   te as loadTasks,
   N as meta,
@@ -166,7 +166,7 @@ export {
   O as registerTask,
   q as runTask,
   U as series,
-  se as task,
+  ne as task,
   c as tasks,
   $ as unregisterTask,
   W as vesic,
