@@ -1,185 +1,201 @@
-import w, { readFileSync as y, openSync as b, writeSync as h, close as g, writeFileSync as A, appendFileSync as T, existsSync as j, mkdirSync as E, rmSync as x, renameSync as P } from "fs";
-import m from "glob/sync.js";
-import p, { format as v, dirname as F, parse as I } from "path";
-function W() {
+import A, { readFileSync as h, openSync as E, writeSync as k, close as T, writeFileSync as j, appendFileSync as x, existsSync as P, mkdirSync as F, rmSync as I, renameSync as W } from "fs";
+import d from "glob/sync.js";
+import p, { format as S, dirname as C, parse as D } from "path";
+function V() {
   return () => {
   };
 }
-function C(e) {
+function _(e) {
   return e;
 }
-function D() {
+function B() {
 }
-function V(e) {
+function O(e) {
   if (Array.isArray(e))
-    return function(t) {
-      return t.map((i) => V(i));
+    return function(o) {
+      return o.map((t) => O(t));
     }(e);
-  let s = (e = function(t = {}) {
-    return function(i = W, a = C, o = D, r = {}) {
-      t.src = i, t.proc = a, t.sink = o, t.meta = r;
-    }(t.src, t.proc, t.sink, t.meta), t;
-  }(e)).src, n = e.proc(s, e.meta);
-  return e.sink(n, e.meta);
+  let n = (e = function(o = {}) {
+    return function(t = V, i = _, a = B, r = {}) {
+      o.src = t, o.proc = i, o.sink = a, o.meta = r;
+    }(o.src, o.proc, o.sink, o.meta), o;
+  }(e)).src, s = e.proc(n, e.meta);
+  return e.sink(s, e.meta);
 }
-function U() {
+function Z() {
   let e = {};
-  return { src(s) {
-    return e.pipe = s, this;
-  }, done: () => e.sink, meta(s) {
-    return e.meta = s, this;
-  }, useProc(s) {
-    return e.curProc = s, this;
-  }, proc(s, n) {
-    return n && this.meta(n), typeof s == "object" && (s = meta(e.curProc, s)), e.pipe = s(e.pipe, e.meta || {}), this;
-  }, useSink(s) {
-    return e.curSink = s, this;
-  }, sink(s, n) {
-    return n && this.meta(n), typeof s == "object" && (s = meta(e.curSink, s)), e.sink = s(e.pipe, e.meta || {}), this;
-  }, series(...s) {
-    return s.forEach((n) => this.proc(n)), this;
-  }, parallel(...s) {
-    return s.forEach((n) => this.sink(n)), this;
+  return { src(n) {
+    return e.pipe = n, this;
+  }, done: () => e.sink, meta(n) {
+    return e.meta = n, this;
+  }, useProc(n) {
+    return e.curProc = n, this;
+  }, proc(n, s) {
+    return s && this.meta(s), typeof n == "object" && (n = meta(e.curProc, n)), e.pipe = n(e.pipe, e.meta || {}), this;
+  }, useSink(n) {
+    return e.curSink = n, this;
+  }, sink(n, s) {
+    return s && this.meta(s), typeof n == "object" && (n = meta(e.curSink, n)), e.sink = n(e.pipe, e.meta || {}), this;
+  }, series(...n) {
+    return n.forEach((s) => this.proc(s)), this;
+  }, parallel(...n) {
+    return n.forEach((s) => this.sink(s)), this;
   } };
 }
-function X(e, s) {
-  return (n) => e(n, s);
+function $(e, n) {
+  return (s) => e(s, n);
 }
-function Y(...e) {
-  return (s, n) => e.map((t) => t(s, n));
+function ee(...e) {
+  return (n, s) => e.map((o) => o(n, s));
 }
-function Z(...e) {
-  return (s, n) => e.reduce((t, i) => i(t, n), s);
+function ne(...e) {
+  return (n, s) => e.reduce((o, t) => t(o, s), n);
 }
-function $(e) {
+function se(e) {
   console.log(e);
 }
-function d(e) {
-  return typeof e == "object" ? v(e) : e;
+function y(e) {
+  return typeof e == "object" ? S(e) : e;
 }
-function _(e) {
-  let s = "";
-  return e.p && (s += e.p), e.w && (s += e.w), e.a && (s += e.a), s;
+function R(e) {
+  let n = "";
+  return e.p && (n += e.p), e.w && (n += e.w), e.a && (n += e.a), n;
 }
-function B(e, s, n) {
-  let t = y(e);
-  n && (t += n.toString());
-  const i = b(e, "w+"), a = Buffer.from(s);
-  h(i, a, 0, a.length, 0), h(i, t, 0, t.length, a.length), g(i, (o) => {
-    if (o)
-      throw o;
+function q(e, n, s) {
+  let o = h(e);
+  s && (o += s.toString());
+  const t = E(e, "w+"), i = Buffer.from(n);
+  k(t, i, 0, i.length, 0), k(t, o, 0, o.length, i.length), T(t, (a) => {
+    if (a)
+      throw a;
   });
 }
-function k(e, s, n) {
-  let { p: t, w: i, a } = s;
-  if (i)
-    return s = _(s), void A(e, s.toString(), n == null ? void 0 : n.options);
-  t === void 0 && a === void 0 || (t === void 0 && a ? T(e, a.toString(), n == null ? void 0 : n.options) : B(e, t, a));
+function v(e, n, s) {
+  let { p: o, w: t, a: i } = n;
+  if (t)
+    return n = R(n), void j(e, n.toString(), s == null ? void 0 : s.options);
+  o === void 0 && i === void 0 || (o === void 0 && i ? x(e, i.toString(), s == null ? void 0 : s.options) : q(e, o, i));
 }
-function ee(e, s) {
-  return e = d(e || (s == null ? void 0 : s.path)), y(e, (s == null ? void 0 : s.options) || "utf-8");
+function oe(e, n) {
+  return e = y(e || (n == null ? void 0 : n.path)), h(e, (n == null ? void 0 : n.options) || "utf-8");
 }
-function se(e, s) {
-  let n = d(s == null ? void 0 : s.path);
-  const t = F(n);
-  let i, a = e !== void 0;
+function te(e, n) {
+  let s = y(n == null ? void 0 : n.path);
+  const o = C(s);
+  let t, i = e !== void 0;
   if (typeof e == "object") {
-    const { a: o, w: r, p: c } = e;
-    if (!o && !r && !c)
-      return a = !1, e;
-    i = () => k(n, { a: o, w: r, p: c }, s);
+    const { a, w: r, p: c } = e;
+    if (!a && !r && !c)
+      return i = !1, e;
+    t = () => v(s, { a, w: r, p: c }, n);
   }
-  return !j(n) && a && E(t, { recursive: !0 }), i ? i() : k(n, { w: e }, s), e;
+  return !P(s) && i && F(o, { recursive: !0 }), t ? t() : v(s, { w: e }, n), e;
 }
-function O(e, s) {
-  return Array.isArray(e) ? void e.forEach((n) => O(n, s)) : (e = d(e), m(e).forEach((n) => {
-    x(n, { recursive: !0, force: !0, ...s == null ? void 0 : s.options });
+function z(e, n) {
+  return Array.isArray(e) ? void e.forEach((s) => z(s, n)) : (e = y(e), d(e).forEach((s) => {
+    I(s, { recursive: !0, force: !0, ...n == null ? void 0 : n.options });
   }), e);
 }
-function R(e, s) {
+function G(e, n) {
   if (Array.isArray(e))
-    return void e.forEach((i) => R(i, s));
-  let n = I(e), t = s.path;
-  if (typeof t == "object") {
-    const { root: i, dir: a, base: o, ext: r, name: c } = s.path;
-    r === void 0 && c === void 0 || (n.base = void 0), i !== void 0 && (n.root = i), a !== void 0 && (n.dir = a), o !== void 0 && (n.base = o), r !== void 0 && (n.ext = r), c !== void 0 && (n.name = c), t = v(n);
+    return void e.forEach((t) => G(t, n));
+  let s = D(e), o = n.path;
+  if (typeof o == "object") {
+    const { root: t, dir: i, base: a, ext: r, name: c } = n.path;
+    r === void 0 && c === void 0 || (s.base = void 0), t !== void 0 && (s.root = t), i !== void 0 && (s.dir = i), a !== void 0 && (s.base = a), r !== void 0 && (s.ext = r), c !== void 0 && (s.name = c), o = S(s);
   }
-  return P(e, t), t;
+  return W(e, o), o;
 }
-const q = "./src/task/*.js", S = { glob: "./src/**/*.js", delay: 100 };
+function ie(e, n) {
+  const s = n.header || `
+`, o = n.footer || "";
+  let t = [];
+  if (Array.isArray(e) ? t = e : t.push(e), e === void 0 || t.length === 0)
+    return;
+  let i = "";
+  function a(r, c, m) {
+    return typeof r == "function" ? r(c, m, t.length) : r;
+  }
+  return t.forEach((r, c) => {
+    const m = h(r), b = a(s, r, c), g = a(o, r, c);
+    i += b + m + g;
+  }), i;
+}
+const H = "./src/task/*.js", w = { glob: "./src/**/*.js", delay: 100 };
 let f;
-const u = {}, z = (e) => u[e.id] = e, ne = (e) => u[e] = void 0, G = (e) => u[e] !== void 0, te = () => process.env.VESIC_API = !0;
-function ie(e) {
-  return !(!G(e) || !u[e].main) && typeof u[e].main == "function";
+const u = {}, J = (e) => u[e.id] = e, re = (e) => u[e] = void 0, K = (e) => u[e] !== void 0, ae = () => process.env.VESIC_API = !0;
+function ce(e) {
+  return !(!K(e) || !u[e].main) && typeof u[e].main == "function";
 }
-function H(e, s, n) {
-  s = { id: e, ...s };
+function L(e, n, s) {
+  n = { id: e, ...n };
+  const o = Date.now();
+  u[e].main(n, s);
   const t = Date.now();
-  u[e].main(s, n);
-  const i = Date.now();
-  return { start: t, stop: i, dur: i - t };
+  return { start: o, stop: t, dur: t - o };
 }
-function ae(e) {
+function ue(e) {
   process.env.VESIC_API === "true" ? process.emit("task", e) : e.main();
 }
-function J(e) {
-  const s = { id: p.basename(f || "", p.extname(f || "")), url: f, ...e };
-  z(s);
+function M(e) {
+  const n = { id: p.basename(f || "", p.extname(f || "")), url: f, ...e };
+  J(n);
 }
-function K() {
-  process.listenerCount("task") == 0 && process.on("task", J);
+function N() {
+  process.listenerCount("task") == 0 && process.on("task", M);
 }
-async function oe(e = q) {
-  K();
-  const s = await m(e, {});
-  for (let n of s)
-    f = n, await import(p.resolve(n));
+async function fe(e = H) {
+  N();
+  const n = await d(e, {});
+  for (let s of n)
+    f = s, await import(p.resolve(s));
 }
 let l;
-const re = () => l.length > 0;
-function L(e = S.glob) {
-  return l = m(e), e;
+const pe = () => l.length > 0;
+function Q(e = w.glob) {
+  return l = d(e), e;
 }
-function ce(e, s) {
-  s = { ...S, ...s }, !l && L(s.glob);
-  const n = { id: e, ...s };
-  l.forEach((t, i) => {
-    let a = !1;
-    w.watch(p.resolve(t), (o, r) => {
-      a || (a = !0, H(e, n, { watch: { event: o, filename: r, file: t } }), setTimeout(() => {
-        a = !1;
-      }, s.delay));
+function le(e, n) {
+  n = { ...w, ...n }, !l && Q(n.glob);
+  const s = { id: e, ...n };
+  l.forEach((o, t) => {
+    let i = !1;
+    A.watch(p.resolve(o), (a, r) => {
+      i || (i = !0, L(e, s, { watch: { event: a, filename: r, file: o } }), setTimeout(() => {
+        i = !1;
+      }, n.delay));
     });
   });
 }
 export {
-  C as bypass,
-  ee as cat,
-  U as chain,
-  O as clean,
-  D as dummySink,
-  W as dummySrc,
-  _ as formatWriteObj,
-  k as handleWrite,
-  G as hasTask,
-  re as hasWatchables,
-  te as initApi,
-  L as initWatch,
-  ie as isTaskRunnable,
-  K as listenTask,
-  oe as loadTasks,
-  X as meta,
-  se as mkfile,
-  R as mv,
-  Y as parallel,
-  B as prependFile,
-  $ as print,
-  z as registerTask,
-  H as runTask,
-  Z as series,
-  ae as task,
+  _ as bypass,
+  oe as cat,
+  Z as chain,
+  z as clean,
+  ie as concat,
+  B as dummySink,
+  V as dummySrc,
+  R as formatWriteObj,
+  v as handleWrite,
+  K as hasTask,
+  pe as hasWatchables,
+  ae as initApi,
+  Q as initWatch,
+  ce as isTaskRunnable,
+  N as listenTask,
+  fe as loadTasks,
+  $ as meta,
+  te as mkfile,
+  G as mv,
+  ee as parallel,
+  q as prependFile,
+  se as print,
+  J as registerTask,
+  L as runTask,
+  ne as series,
+  ue as task,
   u as tasks,
-  ne as unregisterTask,
-  V as vesic,
-  ce as watchTask
+  re as unregisterTask,
+  O as vesic,
+  le as watchTask
 };
