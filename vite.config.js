@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import { terser } from "rollup-plugin-terser";
+import path from "path";
 
 export default defineConfig({
     build: {
@@ -18,5 +19,8 @@ export default defineConfig({
     },
     test: {
         globals: true,
+        alias: {
+            "@": path.resolve("./"),
+        },
     },
 });
