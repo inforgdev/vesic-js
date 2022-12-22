@@ -1,4 +1,4 @@
-import { readFileSync } from "fs";
+import { readFileSync, existsSync } from "fs";
 
 export function concat(path, meta) {
     const headerFunc = meta.header || "\n";
@@ -27,7 +27,7 @@ export function concat(path, meta) {
     }
 
     files.forEach((file, i) => {
-        const data = readFileSync(file);
+        const data = existsSync(file) ? readFileSync(file) : "";
         const header = option(headerFunc, file, i);
         const footer = option(footerFunc, file, i);
         content += header + data + footer;
