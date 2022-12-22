@@ -1,14 +1,15 @@
 import { renameSync } from "fs";
 import { format, parse } from "path";
+import { mkdirIfNotExists } from "./_utils.js";
 
 export function mv(path, meta) {
     if(Array.isArray(path)) {
         path.forEach((p) => mv(p, meta));
         return;
     }
-
+    
     let pathObj = parse(path);
-
+    
     let newPath = meta.path;
 
     if(typeof newPath === "object") {
@@ -26,6 +27,8 @@ export function mv(path, meta) {
         
         newPath = format(pathObj);
     }
+
+    mkdirIfNotExists(newPath);
 
     renameSync(path, newPath);
     return newPath;

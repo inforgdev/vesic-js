@@ -1,4 +1,5 @@
-import { appendFileSync, close, openSync, readFileSync, writeFileSync, writeSync } from "fs";
+import { appendFileSync, close, existsSync, mkdirSync, openSync, readFileSync, writeFileSync, writeSync } from "fs";
+import { dirname } from "path";
 
 export function formatWriteObj(obj) {
     let data = "";
@@ -46,4 +47,12 @@ export function handleWrite(entry, data, meta) {
     }
     
     prependFile(entry, p, a);
+}
+
+export function mkdirIfNotExists(path) {
+    const targetDir = dirname(path);
+
+    if(!existsSync(targetDir)) {
+        mkdirSync(targetDir, { recursive: true });
+    }
 }
