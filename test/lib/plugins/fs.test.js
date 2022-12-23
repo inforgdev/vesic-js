@@ -6,9 +6,9 @@ import { mkfile, cat, clean } from "@/dist/vesic.js";
 const mock = {
     data: "1",
     path: {
-        fulldir: "test/test",
-        dirname: "test",
-        filename: "test/a.txt",
+        fulldir: ".test/.test",
+        dirname: ".test",
+        filename: ".test/a.txt",
     },
 };
 
