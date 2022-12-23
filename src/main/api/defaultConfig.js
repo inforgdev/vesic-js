@@ -1,5 +1,5 @@
 export default {
-    root: "./src/task/*.js",
+    root: "./scripts/*.js",
     watch: {
         glob: "./src/**/*.js",
         delay: 100,

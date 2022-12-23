@@ -124,7 +124,7 @@ function G(e, n) {
   }
   return b(s), C(e, s), s;
 }
-const H = "./src/task/*.js", g = { glob: "./src/**/*.js", delay: 100 };
+const H = "./scripts/*.js", g = { glob: "./src/**/*.js", delay: 100 };
 let f;
 const u = {}, J = (e) => u[e.id] = e, oe = (e) => u[e] = void 0, K = (e) => u[e] !== void 0, ce = () => process.env.VESIC_API = !0;
 function ue(e) {
