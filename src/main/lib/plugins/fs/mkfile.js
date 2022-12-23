@@ -1,5 +1,5 @@
 import { optionsPath } from "./_options.js";
-import { handleWrite } from "./_utils.js";
+import { handleWrite, mkdirIfNotExists } from "./_utils.js";
 
 export function mkfile(data, meta) {
     let entry = optionsPath(meta?.path);
